@@ -4,9 +4,13 @@ const buttonCharac = ["luffy", "sanji", "shanks", "zoro"]
 let gamePattern = []
 let started = false;
 let level = 0;
-$(document).on("touchstart",startGame)
-$(document).keypress(startGame);
-
+$(document).keypress(function () {
+    if (!started) {
+        $("#level-title").text("Level " + (level));
+        nextSequence();
+        started = true;
+    }
+});
 $(".btn").click((e) => {
     let chara = $(e.currentTarget).attr("id");
     userClickedPattern.push(chara)
@@ -35,7 +39,7 @@ const checkAnswer = (currentLevel) => {
         if (gamePattern.length === userClickedPattern.length) {
             setTimeout(() => {
                 nextSequence();
-            }, 300)
+            }, 500)
             console.log("userClicked", userClickedPattern)
             console.log(gamePattern)
         }
