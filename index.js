@@ -4,14 +4,28 @@ const buttonCharac = ["luffy", "sanji", "shanks", "zoro"]
 let gamePattern = []
 let started = false;
 let level = 0;
-$(document).keypress(function () {
+// $(document).keypress(function () {
+//     if (!started) {
+//         $("#level-title").text("Level " + (level));
+//         nextSequence();
+//         started = true;
+//     }
+// });
+$(".btn").click(()=>{
+    if (!started) {
+        $("#level-title").text("Level " + (level));
+        nextSequence();
+        started = true;
+    }
+})
+$(document).keypress(()=>{
     if (!started) {
         $("#level-title").text("Level " + (level));
         nextSequence();
         started = true;
     }
 });
-$(".btn").click((e) => {
+$(".btns").click((e) => {
     let chara = $(e.currentTarget).attr("id");
     userClickedPattern.push(chara)
     let elem = e.currentTarget
@@ -32,7 +46,7 @@ const checkAnswer = (currentLevel) => {
         if (gamePattern.length === userClickedPattern.length) {
             setTimeout(() => {
                 nextSequence();
-            }, 300)
+            }, 500)
             console.log("userClicked", userClickedPattern)
             console.log(gamePattern)
         }
