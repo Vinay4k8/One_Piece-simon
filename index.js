@@ -4,13 +4,9 @@ const buttonCharac = ["luffy", "sanji", "shanks", "zoro"]
 let gamePattern = []
 let started = false;
 let level = 0;
-$(document).keypress(function () {
-    if (!started) {
-        $("#level-title").text("Level " + (level));
-        nextSequence();
-        started = true;
-    }
-});
+$(document).on("touchstart",startGame)
+$(document).keypress(startGame);
+
 $(".btn").click((e) => {
     let chara = $(e.currentTarget).attr("id");
     userClickedPattern.push(chara)
@@ -22,6 +18,14 @@ $(".btn").click((e) => {
     play(chara)
     checkAnswer(userClickedPattern.length - 1);
 })
+const startGame=()=>{
+function () {
+    if (!started) {
+        $("#level-title").text("Level " + (level));
+        nextSequence();
+        started = true;
+    }
+}}
 const play = async (a) => {
     var audio = new Audio(`sounds/${a}.mp3`);
     await audio.play();
