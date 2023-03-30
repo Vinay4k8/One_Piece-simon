@@ -19,13 +19,12 @@ $(".btn").click((e) => {
     checkAnswer(userClickedPattern.length - 1);
 })
 const startGame=()=>{
-function () {
     if (!started) {
         $("#level-title").text("Level " + (level));
         nextSequence();
         started = true;
     }
-}}
+}
 const play = async (a) => {
     var audio = new Audio(`sounds/${a}.mp3`);
     await audio.play();
